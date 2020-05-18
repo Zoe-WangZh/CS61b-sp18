@@ -4,7 +4,7 @@ public class NBody {
         In in = new In(s);
         int num = in.readInt();
         return in.readDouble();
-    }
+    } //
 
     public static Planet[] readPlanets(String s){
         In in = new In(s);
