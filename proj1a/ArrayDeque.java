@@ -16,11 +16,16 @@ public class ArrayDeque<T> {
 
     private void resize(int capacity) {
         T[] a = (T[]) new Object[capacity];
-        System.arraycopy(array, front + 1, a, 0, array.length - front - 1);
-        System.arraycopy(array, 0, a, array.length - front - 1, rear);
+        if (rear > front && rear - front - 1 == size) {
+            System.arraycopy(array, front + 1, a,0, size);
+        } else {
+            System.arraycopy(array, front + 1, a, 0, array.length - front - 1);
+            System.arraycopy(array, 0, a,array.length - front - 1, rear);
+        }
+
         array = a;
 
-        front = (array.length - 1) % array.length;
+        front = (array.length - 1) % array.length; //(array.length - 1) % array.length
         rear = size;
     }
 
@@ -48,7 +53,7 @@ public class ArrayDeque<T> {
         size -= 1;
         array[front] = null;
 
-        if (array.length <= 16 && size / array.length <= 0.25) {
+        if (array.length <= 16 && array.length >= 4 * size) {
             resize(array.length / 2);
         }
         return remove;
@@ -95,7 +100,12 @@ public class ArrayDeque<T> {
 
     }
 
+    public static void main(String[] args) {
+        ArrayDeque<Integer> a = new ArrayDeque<>();
+        a.addFirst(0);
 
+        a.removeFirst();
+    }
 
 
 }
