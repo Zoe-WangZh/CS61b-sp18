@@ -19,16 +19,18 @@ public class ArrayDeque<T> {
         System.arraycopy(array, front + 1, a, 0, array.length - front - 1);
         System.arraycopy(array, 0, a, array.length - front - 1, rear);
         array = a;
+
+        front = (array.length - 1) % array.length;
+        rear = size;
     }
 
     public void addFirst(T item) {
         if (size == array.length) {
             resize(2 * array.length);
-        } else {
-            array[front] = item;
-            front = (front - 1 + array.length) % array.length;
-            size += 1;
         }
+        array[front] = item;
+        front = (front - 1 + array.length) % array.length;
+        size += 1;
     }
 
     public void addLast(T item) {
@@ -95,6 +97,7 @@ public class ArrayDeque<T> {
 
     }
 
+    /*
     public static void main(String[] args) {
         ArrayDeque<Integer> a = new ArrayDeque<>();
         a.addFirst(0);
@@ -108,5 +111,5 @@ public class ArrayDeque<T> {
         a.addFirst(8);
         a.addFirst(9);
     }
-
+    */
 }
