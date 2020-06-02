@@ -20,7 +20,7 @@ public class ArrayDeque<T> {
             System.arraycopy(array, front + 1, a, 0, size);
         } else {
             System.arraycopy(array, front + 1, a, 0, array.length - front - 1);
-            System.arraycopy(array, 0, a, array.length - front - 1, rear);
+            System.arraycopy(array, 0, a, array.length - front - 1, size - (array.length - front - 1));
         }
 
         array = a;
@@ -95,11 +95,10 @@ public class ArrayDeque<T> {
 
     // If no such item exists, returns null. Must not alter the deque! index starts with 0
     public T get(int index) {
-        if (index < array.length) {
+        if (!isEmpty()) {
             return array[(front + index + 1) % array.length];
-        } else {
-            return null;
         }
+        return null;
 
     }
 
