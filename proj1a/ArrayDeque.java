@@ -17,16 +17,19 @@ public class ArrayDeque<T> {
     private void resize(int capacity) {
         T[] a = (T[]) new Object[capacity];
         if (rear > front && rear - front - 1 == size) {
-            System.arraycopy(array, front + 1, a,0, size);
+            System.arraycopy(array, front + 1, a, 0, size);
         } else {
             System.arraycopy(array, front + 1, a, 0, array.length - front - 1);
-            System.arraycopy(array, 0, a,array.length - front - 1, rear);
+            System.arraycopy(array, 0, a, array.length - front - 1, rear);
         }
 
         array = a;
-
-        front = (array.length - 1) % array.length; //(array.length - 1) % array.length
-        rear = size;
+        if (array.length > 0) {
+            front = (array.length - 1) % array.length; //(array.length - 1) % array.length
+            rear = size;
+        } else {
+            ArrayDeque<T> array = new ArrayDeque<>();
+        }
     }
 
     public void addFirst(T item) {
@@ -100,12 +103,7 @@ public class ArrayDeque<T> {
 
     }
 
-    public static void main(String[] args) {
-        ArrayDeque<Integer> a = new ArrayDeque<>();
-        a.addFirst(0);
 
-        a.removeFirst();
-    }
 
 
 }
