@@ -20,7 +20,8 @@ public class ArrayDeque<T> {
             System.arraycopy(array, front + 1, a, 0, size);
         } else {
             System.arraycopy(array, front + 1, a, 0, array.length - front - 1);
-            System.arraycopy(array, 0, a, array.length - front - 1, size - (array.length - front - 1));
+            System.arraycopy(array, 0, a, array.length - front - 1,
+                    size - (array.length - front - 1));
         }
 
         array = a;
@@ -28,7 +29,9 @@ public class ArrayDeque<T> {
             front = (array.length - 1) % array.length; //(array.length - 1) % array.length
             rear = size;
         } else {
-            ArrayDeque<T> array = new ArrayDeque<>();
+            array = (T[]) new Object[8];
+            this.front = 0;   //point to the first element of array, treat it as circular
+            this.rear = 1;
         }
     }
 
