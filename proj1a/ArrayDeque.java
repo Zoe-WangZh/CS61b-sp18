@@ -57,6 +57,13 @@ public class ArrayDeque<T> {
         size -= 1;
         array[front] = null;
 
+        if (array.length == 1) {
+            array = (T[]) new Object[8];
+            this.front = 0;   //point to the first element of array, treat it as circular
+            this.rear = 1;
+            return remove;
+        }
+
         if (array.length <= 16 && array.length >= 4 * size) {
             resize(array.length / 2);
         }
@@ -69,12 +76,14 @@ public class ArrayDeque<T> {
         T remove = array[rear];
         size -= 1;
         array[rear] = null;
+
         if (array.length == 1) {
             array = (T[]) new Object[8];
             this.front = 0;   //point to the first element of array, treat it as circular
             this.rear = 1;
             return remove;
         }
+
         if (array.length <= 16 && array.length >= 4 * size) {
             resize(array.length / 2);
         }
@@ -109,7 +118,6 @@ public class ArrayDeque<T> {
         return null;
 
     }
-
 
 
 }
