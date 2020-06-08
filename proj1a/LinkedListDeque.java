@@ -98,16 +98,16 @@ public class LinkedListDeque<T> {
         }
     }
 
-    private T getRecursive_helper(int index, TNode curr) {
+    private T helper(int index, TNode curr) {
         if (index == 0) {
             return (T) curr.item;
         }
-        return (T) getRecursive_helper(index - 1, curr.next);
+        return (T) helper(index - 1, curr.next);
     }
 
     public T getRecursive(int index) {
         TNode curr = sentinel.next;
-        return getRecursive_helper(index, curr);
+        return helper(index, curr);
     }
 
 }
