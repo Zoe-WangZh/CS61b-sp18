@@ -1,6 +1,3 @@
-import java.util.function.Function;
-import java.util.function.Predicate;
-
 public class Palindrome {
 
     public Deque<Character> wordToDeque(String s) {
@@ -42,7 +39,7 @@ public class Palindrome {
         if (q.size() <= 1) {
             return true;
         }
-        return cc.equalChars(q.removeFirst(), q.removeLast()) && helper(q,cc);
+        return cc.equalChars(q.removeFirst(), q.removeLast()) && helper(q, cc);
     }
 
     // TO determine whether a word is a off-by-one palindrome
