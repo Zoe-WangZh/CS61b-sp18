@@ -20,7 +20,10 @@ public class TestPalindrome {
     @Test
     public void testisPalindrome() {
         assertFalse(palindrome.isPalindrome("cat"));
-        assertTrue(palindrome.isPalindrome(palindrome.wordToDeque("csasc")));
+        assertTrue(palindrome.isPalindrome("madam"));
+        assertTrue(palindrome.isPalindrome("racecar"));
+        assertTrue(palindrome.isPalindrome("a"));
+        assertTrue(palindrome.isPalindrome(""));
     }
 
     @Test
